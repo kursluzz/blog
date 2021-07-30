@@ -45,8 +45,7 @@ shuttle | SUCCESS => {
 
 ```
 
-## Run as another user
-You can pass `-u` in order to run a command as another user.
+
 
 ## Execute a command
 	ansible all -a 'echo hello'
@@ -66,3 +65,7 @@ Then run
 ```bash
 $ ansible-playbook mytask.yaml
 ```
+
+## Run as sudo / another user
+You can pass `-u` in order to run a command as another user. 
+Pass --become flag in order to run with sudo.
