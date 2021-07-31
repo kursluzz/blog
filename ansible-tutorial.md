@@ -66,9 +66,8 @@ Then run
 $ ansible-playbook mytask.yaml
 ```
 
-## Run as sudo / another user
+## Run as another user
 You can pass `-u` in order to run a command as another user. 
-Pass --become flag in order to run with sudo.
 ```bash
 # as bruce
 $ ansible all -m ping -u bruce
@@ -76,6 +75,11 @@ $ ansible all -m ping -u bruce
 $ ansible all -m ping -u bruce --become
 # as bruce, sudoing to batman
 $ ansible all -m ping -u bruce --become --become-user batman
-# shutdown all computers, -K ask for password
-$ ansible all -a "shutdown now" --become -K
+```
+
+## Run with sudo
+You can run commands as sudo with `--become`, but you need to ask for prompt password with `--ask-become-pass`.
+```bash
+# shutdown all computers
+ansible all --become --ask-become-pass -a "shutdown now"
 ```
