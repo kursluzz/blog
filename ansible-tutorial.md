@@ -1,4 +1,4 @@
-# Ansible tutorial
+    # Ansible tutorial
 
 Ansible is an IT automation tool. It allows to define and control your cluster infrastructure by a configuration. This is my Ansible I'll go over the main consepts of this tool.
 
@@ -76,4 +76,6 @@ $ ansible all -m ping -u bruce
 $ ansible all -m ping -u bruce --become
 # as bruce, sudoing to batman
 $ ansible all -m ping -u bruce --become --become-user batman
+# shutdown all computers, -K ask for password
+$ ansible all -a "shutdown now" --become -K
 ```
