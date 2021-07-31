@@ -8,18 +8,18 @@ https://docs.ansible.com/ansible/latest/user_guide/intro_getting_started.html
 
 Let's create a basic inventory. A list of hosts in my LAN that I'm going to use. Previously I've set the hosts in `~/.ssh/config` in order to address the hosts by a name, and used ssh-copy-id in order avoid promptim password. You can use ip address as well.
 
-```
+```shell script
 vim /etc/ansible/hosts
 ```
-
-```
+file contents
+```shell script
 shuttle
 saturn
 triton
 ```
 
 ## Run ping to all hosts
-```bash
+```shell script
 $ ansible all -m ping
 saturn | SUCCESS => {
     "ansible_facts": {
@@ -52,7 +52,7 @@ shuttle | SUCCESS => {
 
 ## Run a playbood task
 In a dirictory create a yaml file.
-```bash
+```shell script
 $ vim myproject/mytask.yaml
 ---
 - name: My task
@@ -62,13 +62,13 @@ $ vim myproject/mytask.yaml
        command: "touch /tmp/ansible_was_here"
 ```
 Then run 
-```bash
+```shell script
 $ ansible-playbook mytask.yaml
 ```
 
 ## Run as another user
 You can pass `-u` in order to run a command as another user. 
-```bash
+```shell script
 # as bruce
 $ ansible all -m ping -u bruce
 # as bruce, sudoing to root (sudo is default method)
@@ -78,8 +78,15 @@ $ ansible all -m ping -u bruce --become --become-user batman
 ```
 
 ## Run with sudo
-You can run commands as sudo with `--become`, but you need to ask for prompt password with `--ask-become-pass`.
-```bash
+You can run commands as sudo with `--become`, but you need to ask for prompt password with `--ask-become-pass` or 
+shortly `K`.
+```shell script
 # shutdown all computers
-ansible all --become --ask-become-pass -a "shutdown now"
+ansible all --become -K -a "shutdown now"
+```
+
+## Specify parallel processes number
+By default parallel number of processes is 5. If you want to increase it you can pass it in `-f` parameter.
+```shell script
+ansible all --become -K -f 10 -a "shutdown now"
 ```
