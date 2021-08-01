@@ -7,3 +7,4 @@ Source article: https://learn.hashicorp.com/tutorials/terraform/eks
 
 As a starting point we'll use this project [deploy-aws-eks-kubernetes-with-terraform-prj.zip](https://github.com/kursluzz/blog/blob/main/deploy-aws-eks-kubernetes-with-terraform-prj.zip?raw=true)
 
+In my case I want to deploy to existing vpc, so I need to get rid of vpc.tf
