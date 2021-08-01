@@ -1,4 +1,4 @@
-    # Ansible tutorial
+# Ansible tutorial
 
 Ansible is an IT automation tool. It allows to define and control your cluster infrastructure by a configuration. This is my Ansible I'll go over the main consepts of this tool.
 
@@ -21,6 +21,9 @@ triton
 ## Run ping to all hosts
 ```bash
 $ ansible all -m ping
+```
+output
+```
 saturn | SUCCESS => {
     "ansible_facts": {
         "discovered_interpreter_python": "/usr/bin/python3"
@@ -42,10 +45,7 @@ shuttle | SUCCESS => {
     "changed": false,
     "ping": "pong"
 }
-
 ```
-
-
 
 ## Execute a command
 	ansible all -a 'echo hello'
