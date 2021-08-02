@@ -90,3 +90,22 @@ By default parallel number of processes is 5. If you want to increase it you can
 ```bash
 ansible all --become -K -f 10 -a "shutdown now"
 ```
+
+## Environment variables
+Detailed information can be found [here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html)
+Print all available environment variables:
+```
+- name: Print all available facts
+  ansible.builtin.debug:
+    var: ansible_facts
+```
+Print a raw data of a host:
+```
+ansible <hostname> -m ansible.builtin.setup
+```
+Print environment variable example:
+```
+- name: Basic usage
+  debug:
+    msg: "'{{ lookup('env', 'HOME') }}' is the HOME environment variable."
+```
