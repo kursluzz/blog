@@ -54,22 +54,6 @@ $ ansible all -m ping
 ### Execute a command
 	ansible all -a 'echo hello'
 
-### Run a playbood task
-In a dirictory create a yaml file.
-```
-$ vim myproject/mytask.yaml
----
-- name: My task
-  hosts: all
-  tasks:
-     - name: Leaving a mark
-       command: "touch /tmp/ansible_was_here"
-```
-Then run 
-```
-$ ansible-playbook mytask.yaml
-```
-
 ### Run as another user
 You can pass `-u` in order to run a command as another user. 
 ```
@@ -112,4 +96,22 @@ Print environment variable example:
 - name: Basic usage
   debug:
     msg: "'{{ lookup('env', 'HOME') }}' is the HOME environment variable."
+```
+
+## Playbooks
+
+### Run a playbood task
+In a dirictory create a yaml file.
+```
+$ vim myproject/mytask.yaml
+---
+- name: My task
+  hosts: all
+  tasks:
+     - name: Leaving a mark
+       command: "touch /tmp/ansible_was_here"
+```
+Then run 
+```
+$ ansible-playbook mytask.yaml
 ```
