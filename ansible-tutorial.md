@@ -46,33 +46,9 @@ ansible_ssh_private_key_file=/home/ec2-user/.ssh/mykey.pem
 ## Ad-Hoc commands
 Ad-Hoc commands are commands that you run in command line and not in play-book
 
-### Run ping to all hosts
+### Ping to all hosts
 ```
 $ ansible all -m ping
-```
-output
-```
-saturn | SUCCESS => {
-    "ansible_facts": {
-        "discovered_interpreter_python": "/usr/bin/python3"
-    },
-    "changed": false,
-    "ping": "pong"
-}
-triton | SUCCESS => {
-    "ansible_facts": {
-        "discovered_interpreter_python": "/usr/bin/python3"
-    },
-    "changed": false,
-    "ping": "pong"
-}
-shuttle | SUCCESS => {
-    "ansible_facts": {
-        "discovered_interpreter_python": "/usr/bin/python3"
-    },
-    "changed": false,
-    "ping": "pong"
-}
 ```
 
 ### Execute a command
