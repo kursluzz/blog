@@ -38,7 +38,13 @@ ansible_user = ec2-user
 ansible_ssh_private_key_file=/home/ec2-user/.ssh/mykey.pem
 ```
 ### View inventory
+    # list of groups hosts and vars
     ansible-inventory --list
+    # tree of groups and hosts
+    ansible-inventory --graph
+    
+## Ad-Hoc commands
+Ad-Hoc commands are commands that you run in command line and not in play-book
 
 ### Run ping to all hosts
 ```
