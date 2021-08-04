@@ -54,6 +54,13 @@ $ ansible all -m ping
 ### Execute a command
 	ansible all -a 'echo hello'
 
+Print a raw data of a host:
+```
+ansible <hostname> -m ansible.builtin.setup
+# or shorter
+ansible <hostname> -m setup
+```
+
 ### Run as another user
 You can pass `-u` in order to run a command as another user. 
 ```
@@ -87,16 +94,6 @@ Print all available environment variables:
   ansible.builtin.debug:
     var: ansible_facts
 ```
-Print a raw data of a host:
-```
-ansible <hostname> -m ansible.builtin.setup
-```
-Print environment variable example:
-```
-- name: Basic usage
-  debug:
-    msg: "'{{ lookup('env', 'HOME') }}' is the HOME environment variable."
-```
 
 ## Playbooks
 
@@ -114,4 +111,10 @@ $ vim myproject/mytask.yaml
 Then run 
 ```
 $ ansible-playbook mytask.yaml
+```
+Print environment variable example:
+```
+- name: Basic usage
+  debug:
+    msg: "'{{ lookup('env', 'HOME') }}' is the HOME environment variable."
 ```
