@@ -1,25 +1,47 @@
 # Ansible tutorial
 
-Ansible is an IT automation tool. It allows to define and control your cluster infrastructure by a configuration. This is my Ansible I'll go over the main consepts of this tool.
+Ansible is an IT automation tool. It allows to define and control your cluster infrastructure by a configuration. This is my Ansible I'll go over the main concepts of this tool.
 
 https://docs.ansible.com/ansible/latest/user_guide/intro_getting_started.html
 
 ## Inventory
 
-Let's create a basic inventory. A list of hosts in my LAN that I'm going to use. Previously I've set the hosts in `~/.ssh/config` in order to address the hosts by a name, and used ssh-copy-id in order avoid promptim password. You can use ip address as well.
+Inventory file is a list of hosts and hosts groups. Here's some examples:
 
-```bash
+```
 vim /etc/ansible/hosts
 ```
 file contents
-```bash
+```
+# hosts can be set in ~/.ssh/config
 shuttle
 saturn
 triton
-```
 
-## Run ping to all hosts
-```bash
+# as ip
+[prod_servers]
+10.0.0.5
+10.0.0.6
+
+# group 
+[staging_servers]
+svr1 ansible_host=172.1.2.3 ansible_user=ec2-user ansible_ssh_private_key_file=/home/ec2-user/.ssh/mykey.pem
+
+# group of groups
+[staging_prod:children]
+staging_servers
+prod_servers
+
+# variables for a group
+[staging_prod:vars]
+ansible_user = ec2-user
+ansible_ssh_private_key_file=/home/ec2-user/.ssh/mykey.pem
+```
+### View inventory
+    ansible-inventory --list
+
+### Run ping to all hosts
+```
 $ ansible all -m ping
 ```
 output
@@ -47,12 +69,12 @@ shuttle | SUCCESS => {
 }
 ```
 
-## Execute a command
+### Execute a command
 	ansible all -a 'echo hello'
 
-## Run a playbood task
+### Run a playbood task
 In a dirictory create a yaml file.
-```bash
+```
 $ vim myproject/mytask.yaml
 ---
 - name: My task
@@ -62,13 +84,13 @@ $ vim myproject/mytask.yaml
        command: "touch /tmp/ansible_was_here"
 ```
 Then run 
-```bash
+```
 $ ansible-playbook mytask.yaml
 ```
 
-## Run as another user
+### Run as another user
 You can pass `-u` in order to run a command as another user. 
-```bash
+```
 # as bruce
 $ ansible all -m ping -u bruce
 # as bruce, sudoing to root (sudo is default method)
@@ -77,21 +99,21 @@ $ ansible all -m ping -u bruce --become
 $ ansible all -m ping -u bruce --become --become-user batman
 ```
 
-## Run with sudo
+### Run with sudo
 You can run commands as sudo with `--become`, but you need to ask for prompt password with `--ask-become-pass` or 
 shortly `K`.
-```bash
+```
 # shutdown all computers
 ansible all --become -K -a "shutdown now"
 ```
 
-## Specify parallel processes number
+### Specify parallel processes number
 By default parallel number of processes is 5. If you want to increase it you can pass it in `-f` parameter.
-```bash
+```
 ansible all --become -K -f 10 -a "shutdown now"
 ```
 
-## Environment variables
+### Environment variables
 Detailed information can be found [here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html)
 Print all available environment variables:
 ```
