@@ -2,7 +2,8 @@
 
 Ansible is an IT automation tool. It allows to define and control your cluster infrastructure by a configuration. This is my Ansible I'll go over the main concepts of this tool.
 
-https://docs.ansible.com/ansible/latest/user_guide/intro_getting_started.html
+* Getting Started - https://docs.ansible.com/ansible/latest/user_guide/intro_getting_started.html
+* Modules - https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html
 
 ## Inventory
 
@@ -67,7 +68,9 @@ Ad-Hoc commands are commands that you run in command line and not in play-book
     
 ### Download file
     ansible all -m get_url -a "url=https://dlcdnet.asus.com/pub/ASUS/mb/socket775/P5K_SE/e3202_p5k-se.pdf dest=~/."
- 
+
+### Get 
+
 ### Apt install application
     ansible all -m apt -a "name=vim state=present" -b -K
 
