@@ -58,7 +58,18 @@ Ad-Hoc commands are commands that you run in command line and not in play-book
 	ansible all -m shell -a 'uptime'
 	# or short version
 	ansible all -a 'uptime'
-	
+
+### Copy file
+    ansible all -m copy -a "src=myfile dest=~/myfile"
+    
+### Delete file
+    ansible all -m file -a "path=~/myfile state=absent"
+    
+### Download file
+    ansible all -m get_url -a "url=https://dlcdnet.asus.com/pub/ASUS/mb/socket775/P5K_SE/e3202_p5k-se.pdf dest=~/."
+ 
+### Apt install application
+    ansible all -m apt -a "name=vim state=present" -b -K
 
 ### Run as another user
 You can pass `-u` in order to run a command as another user. 
@@ -72,26 +83,17 @@ $ ansible all -m ping -u bruce --become --become-user batman
 ```
 
 ### Run with sudo
-You can run commands as sudo with `--become`, but you need to ask for prompt password with `--ask-become-pass` or 
-shortly `K`.
+You can run commands as sudo with `--become` (-b short), but you need to ask for prompt password with 
+`--ask-become-pass` (short `K`). 
 ```
 # shutdown all computers
-ansible all --become -K -a "shutdown now"
+ansible all -b -K -a "shutdown now"
 ```
 
 ### Specify parallel processes number
 By default parallel number of processes is 5. If you want to increase it you can pass it in `-f` parameter.
 ```
 ansible all --become -K -f 10 -a "shutdown now"
-```
-
-### Environment variables
-Detailed information can be found [here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html)
-Print all available environment variables:
-```
-- name: Print all available facts
-  ansible.builtin.debug:
-    var: ansible_facts
 ```
 
 ## Playbooks
@@ -116,4 +118,12 @@ Print environment variable example:
 - name: Basic usage
   debug:
     msg: "'{{ lookup('env', 'HOME') }}' is the HOME environment variable."
+```
+### Environment variables
+Detailed information can be found [here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html)
+Print all available environment variables:
+```
+- name: Print all available facts
+  ansible.builtin.debug:
+    var: ansible_facts
 ```
