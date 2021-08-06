@@ -47,19 +47,18 @@ ansible_ssh_private_key_file=/home/ec2-user/.ssh/mykey.pem
 Ad-Hoc commands are commands that you run in command line and not in play-book
 
 ### Ping to all hosts
-```
-$ ansible all -m ping
-```
+    ansible all -m ping
+
+### Get remote variables
+    ansible all -m setup
+    # or full commant path
+    ansible all -m ansible.builtin.setup
 
 ### Execute a command
-	ansible all -a 'echo hello'
-
-Print a raw data of a host:
-```
-ansible <hostname> -m ansible.builtin.setup
-# or shorter
-ansible <hostname> -m setup
-```
+	ansible all -m shell -a 'uptime'
+	# or short version
+	ansible all -a 'uptime'
+	
 
 ### Run as another user
 You can pass `-u` in order to run a command as another user. 
