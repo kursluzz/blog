@@ -69,7 +69,8 @@ Ad-Hoc commands are commands that you run in command line and not in play-book
 ### Download file
     ansible all -m get_url -a "url=https://dlcdnet.asus.com/pub/ASUS/mb/socket775/P5K_SE/e3202_p5k-se.pdf dest=~/."
 
-### Get 
+### Get uri similar to curl
+    ansible all -m uri -a "url=https://asus.com"
 
 ### Apt install application
     ansible all -m apt -a "name=vim state=present" -b -K
