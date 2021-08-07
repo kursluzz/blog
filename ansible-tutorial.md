@@ -5,6 +5,14 @@ Ansible is an IT automation tool. It allows to define and control your cluster i
 * Getting Started - https://docs.ansible.com/ansible/latest/user_guide/intro_getting_started.html
 * Modules - https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html
 
+#  Documentation
+## List of modules
+    ansible-doc -l
+## Get module documentation
+    ansible-doc uri
+## List specific specific type options
+    ansible-doc -t become -l
+
 ## Inventory
 
 Inventory file is a list of hosts and hosts groups. Here's some examples:
@@ -85,6 +93,7 @@ Add -vvv to see details of a command. You can use `-v, -vv, -vvv, -vvvv` to get 
     
     ansible all -m shell -a "ls" -vvv
     
+ 
 
 
 ### Run as another user
