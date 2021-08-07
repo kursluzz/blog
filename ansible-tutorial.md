@@ -133,8 +133,13 @@ file content:
     
     myvar1 = myvalue1
     myvar2 = myvalue2
-    
-    
+
+### Get defined variables
+    ansible-inventory --list
+
+### Use variables on remote host
+    ansible mygroup -a 'echo {{ myvar }}'
+
 ## Playbooks
 
 ### Run a playbood task
