@@ -124,7 +124,17 @@ ansible all --become -K -f 10 -a "shutdown now"
     myvar = myvalue
     
 ### Variables in group files
+In same directory with hosts file, crete directory group_vars, inside, place files with named as groups.
+    
+    mkdir group_vars
+    vim group_vars/<group-name>
 
+file content:
+    
+    myvar1 = myvalue1
+    myvar2 = myvalue2
+    
+    
 ## Playbooks
 
 ### Run a playbood task
