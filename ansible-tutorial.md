@@ -81,7 +81,7 @@ Start apache and autostart on startup.
     ansible all -m service -a "name=httpd state=started enabled=yes" -b -K
     
 ### Verbose debug
-Add -vvv to see details of a command.  
+Add -vvv to see details of a command. You can use `-v, -vv, -vvv, -vvvv` to get more or less details.
     
     ansible all -m shell -a "ls" -vvv
     
