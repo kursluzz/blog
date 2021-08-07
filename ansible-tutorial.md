@@ -5,12 +5,12 @@ Ansible is an IT automation tool. It allows to define and control your cluster i
 * Getting Started - https://docs.ansible.com/ansible/latest/user_guide/intro_getting_started.html
 * Modules - https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html
 
-#  Documentation
-## List of modules
+##  Documentation
+### List of modules
     ansible-doc -l
-## Get module documentation
+### Get module documentation
     ansible-doc uri
-## List specific specific type options
+### List specific specific type options
     ansible-doc -t become -l
 
 ## Inventory
@@ -93,9 +93,6 @@ Add -vvv to see details of a command. You can use `-v, -vv, -vvv, -vvvv` to get 
     
     ansible all -m shell -a "ls" -vvv
     
- 
-
-
 ### Run as another user
 You can pass `-u` in order to run a command as another user. 
 ```
@@ -120,6 +117,13 @@ By default parallel number of processes is 5. If you want to increase it you can
 ```
 ansible all --become -K -f 10 -a "shutdown now"
 ```
+
+## Variables
+### Variables in hosts file
+    [<host/group>:vars]
+    myvar = myvalue
+    
+### Variables in group files
 
 ## Playbooks
 
