@@ -75,6 +75,18 @@ Ad-Hoc commands are commands that you run in command line and not in play-book
 ### Apt install application
     ansible all -m apt -a "name=vim state=present" -b -K
 
+### Service module
+Start apache and autostart on startup.
+
+    ansible all -m service -a "name=httpd state=started enabled=yes" -b -K
+    
+### Verbose debug
+Add -vvv to see details of a command.  
+    
+    ansible all -m shell -a "ls" -vvv
+    
+
+
 ### Run as another user
 You can pass `-u` in order to run a command as another user. 
 ```
