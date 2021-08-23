@@ -195,3 +195,15 @@ A simple way to pass sudo password is to set variable in hosts file or in group_
 ansible_sudo_pass: secret-pass
 ```
 For a secured way and more details visit: https://docs.ansible.com/ansible/latest/user_guide/become.html
+
+### Playbook variables
+```
+- name: Install apache web server
+  hosts: saturn
+  become: yes
+  vars:
+    app_name: apache2
+  tasks:
+    - name: Install apache web server
+      apt: name={{ app_name }} state=present
+```
