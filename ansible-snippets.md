@@ -207,3 +207,17 @@ For a secured way and more details visit: https://docs.ansible.com/ansible/lates
     - name: Install apache web server
       apt: name={{ app_name }} state=present
 ```
+
+### Handlers
+A handler is similar to a function. In this example we will call the handler only when a file is copied for the first time.
+```
+...
+  tasks:
+    - name: Copy a file
+      copy: src=~/some-file dest=~/some-file
+      notify: Do after copy
+
+  handlers:
+    - name: Do after copy
+      command: reboot
+```
