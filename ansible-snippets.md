@@ -157,7 +157,15 @@ Then run
 ```
 $ ansible-playbook mytask.yaml
 ```
-Print environment variable example:
+### Ping playbook task example
+```
+- name: Ping all servers
+  hosts: all
+  tasks:
+    - name: ping server
+      ping:
+```
+### Print environment variable
 ```
 - name: Basic usage
   debug:
@@ -171,3 +179,19 @@ Print all available environment variables:
   ansible.builtin.debug:
     var: ansible_facts
 ```
+### Install apache
+```
+- name: Install apache web server
+  hosts: saturn
+  become: yes
+  tasks:
+    - name: Install apache web server
+      apt: name=apache2 state=present
+```
+This will generate error "Missing sudo password". Set password as described bellow.
+### Set sudo password 
+A simple way to pass sudo password is to set variable in hosts file or in group_vars. 
+```
+ansible_sudo_pass: secret-pass
+```
+For a secured way and more details visit: https://docs.ansible.com/ansible/latest/user_guide/become.html
