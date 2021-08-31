@@ -281,3 +281,21 @@ tasks:
       yum: name=httpd state=latest
       when: ansible_os_family == "RedHat"
 ```
+
+### Blocks
+You can gather multiple tasks to a block with one condition instead of repeating in all tasks.
+```
+- block:
+    when: ansible_os_family == "Debian"
+      - name: Install apache
+        apt: name=apache2 state=latest
+      - name: Another task
+        ping:
+- block:
+    when: ansible_os_family == "RedHat"
+      - name: Install apache
+        yum: name=httpd state=latest
+      - name: Another task
+        ping:      
+
+```
