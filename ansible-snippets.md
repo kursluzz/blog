@@ -270,3 +270,14 @@ tasks:
     register: uptime_result
   - debug:
       msg: Computer is up: {{ uptime_result.stdout }}
+      
+## Conditions
+### When
+```
+    - name: Install apache
+      apt: name=apache2 state=latest
+      when: ansible_os_family == "Debian"
+    - name: Install apache
+      yum: name=httpd state=latest
+      when: ansible_os_family == "RedHat"
+```
