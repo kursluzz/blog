@@ -264,3 +264,9 @@ tasks:
 
 ### setup - print ansible environment variables
     ansible all -m setup
+    
+### register - print output of a command
+  - shell: uptime
+    register: uptime_result
+  - debug:
+      msg: Computer is up: {{ uptime_result.stdout }}
