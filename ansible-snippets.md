@@ -208,6 +208,19 @@ For a secured way and more details visit: https://docs.ansible.com/ansible/lates
       apt: name={{ app_name }} state=present
 ```
 
+### /usr/bin/python: not found
+If on local machine there is python2 and on remote host it doesn't exist you will get this error. 
+You can explicitly set python3 interpreter in the playbook.
+```
+...
+  hosts: all
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+    - name: ping server
+...
+```
+
 ### Handlers
 A handler is similar to a function. In this example we will call the handler only when a file is copied for the first time.
 ```
