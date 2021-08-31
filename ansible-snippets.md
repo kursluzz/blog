@@ -222,7 +222,8 @@ You can explicitly set python3 interpreter in the playbook.
 ```
 
 ### Handlers
-A handler is similar to a function. In this example we will call the handler only when a file is copied for the first time.
+A handler is similar to a function. 
+In this example we will call the handler only when a file is copied for the first time.
 ```
 ...
   tasks:
@@ -233,4 +234,30 @@ A handler is similar to a function. In this example we will call the handler onl
   handlers:
     - name: Do after copy
       command: reboot
+```
+
+### Debug
+Print variables using debug
+```
+- name: Test debug
+  hosts: all
+  vars:
+    foo: bar
+  tasks:
+    - name: Print foo
+      debug:
+        var: foo
+    - debug:
+        msg: Foo value is {{ foo }}
+``` 
+### set_fact
+Concat strings
+```
+vars:
+  str1: abc
+  str2: 123
+tasks:
+  - set_fact: result={{ str1 }}-{{ str2 }}
+  - debug:
+      msg: Result string is {{ result }}
 ```
