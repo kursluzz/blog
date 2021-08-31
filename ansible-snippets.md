@@ -282,7 +282,7 @@ tasks:
       when: ansible_os_family == "RedHat"
 ```
 
-### Blocks
+## Blocks
 You can gather multiple tasks to a block with one condition instead of repeating in all tasks.
 ```
 - block:
@@ -297,5 +297,41 @@ You can gather multiple tasks to a block with one condition instead of repeating
         yum: name=httpd state=latest
       - name: Another task
         ping:      
-
 ```
+
+## Loops
+### with_items / loop
+with_items was replaced by loop since around version 2.5
+```
+- name: Loops playbook
+  hosts: shuttle
+  tasks:
+    - name: Loop task
+      with_items:
+        - 1
+        - 2
+        - 3
+      debug:
+        msg: Item {{ item }}
+```
+
+### until
+```
+- name: Until example
+  shell: echo -n Z >> myfile.txt
+  register: output
+  delay: 2
+  retries: 10
+  until: out.stdout.find("ZZZZ") == false
+```
+* delay 2 - optional. wait 2 seconds
+* retries 10 - optional. max 10 iterations
+
+### with_fileglob
+```
+- name: Loop through files in a dir
+  with_fileglob: ~/*.*
+  debug:
+    var: {{ item }}
+```
+## Jinja templates
