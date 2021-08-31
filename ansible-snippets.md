@@ -250,7 +250,7 @@ Print variables using debug
     - debug:
         msg: Foo value is {{ foo }}
 ``` 
-### set_fact
+### set_fact - concat
 Concat strings
 ```
 vars:
@@ -261,3 +261,6 @@ tasks:
   - debug:
       msg: Result string is {{ result }}
 ```
+
+### setup - print ansible environment variables
+    ansible all -m setup
