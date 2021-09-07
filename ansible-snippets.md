@@ -221,6 +221,17 @@ You can explicitly set python3 interpreter in the playbook.
 ...
 ```
 
+## Pass variable to playbook
+As example see how you can pass hosts on which you want to execute the playbook.
+
+    - name: ...
+      hosts: "{{ nodes }}"
+      ...
+
+then use `-e` to pass the variable
+
+    ansible-playbook -e 'nodes=all' myplaybook.yaml
+
 ### Handlers
 A handler is similar to a function. 
 In this example we will call the handler only when a file is copied for the first time.
