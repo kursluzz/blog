@@ -346,3 +346,27 @@ with_items was replaced by loop since around version 2.5
     var: {{ item }}
 ```
 ## Jinja templates
+
+### Copy a file from jinja template
+As example we will copy a configuration file with some host specific settings.
+
+    vim settings.ini.j2
+
+file contents
+
+    ip = {{ ansible_default_ipv4.address }}
+    hostname = {{ ansible_hostname }}
+
+create playbook
+
+    vim copy-settings-template.yaml
+
+file content
+```
+- name: Copy settings template
+  hosts: shuttle
+  tasks:
+    - template: src=settings.ini.j2 dest=~/settings.ini 
+```
+
+Template module is similar to copy 
