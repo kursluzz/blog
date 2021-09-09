@@ -370,3 +370,56 @@ file content
 ```
 
 Template module is similar to copy 
+
+## Roles
+
+Roles is like a more structured way than a playlist for a configuration.
+
+    mkdir roles
+    cd roled
+    ansible-galaxy init my_checklist
+
+Review the tree of directories.
+```
+├── defaults
+│   └── main.yml
+├── files
+├── handlers
+│   └── main.yml
+├── meta
+│   └── main.yml
+├── README.md
+├── tasks
+│   └── main.yml
+├── templates
+├── tests
+│   ├── inventory
+│   └── test.yml
+└── vars
+    └── main.yml
+```
+
+Organize your configurations in the directories like described here 
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html
+Some points to note:
+* files and j2 templates path shouldn't include location directories.
+
+### Use role in playlist
+Define roles is similar to tasks in a playlist. See the example:
+```
+- name: Webserver
+  hosts: webservers
+  become: yes
+  roles:
+    - webserver_role
+```
+
+### Conditional role
+```
+...
+roles:
+  - { role: webserver_role. when: ansible_system == 'Linux' }
+```
+
+## Import / Include
+
