@@ -221,7 +221,13 @@ You can explicitly set python3 interpreter in the playbook.
 ...
 ```
 
-## Pass variable to playbook
+### delegate_to
+You can run a task only on one machine by adding to task:
+
+    delegate_to: <node_name>
+    
+
+### Pass variable to playbook
 As example see how you can pass hosts on which you want to execute the playbook.
 
     - name: ...
@@ -439,3 +445,5 @@ Import will be injected before starting to parse playbook file.
     ...
     include: my_tasks.yaml foo="bar"
     ...
+    
+## delegate_to
