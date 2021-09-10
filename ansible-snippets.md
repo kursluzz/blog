@@ -422,4 +422,20 @@ roles:
 ```
 
 ## Import / Include
+You can separate tasks to a file and use include / import to invoke them from multiple playlists.
+Create a file my_tasks.yaml with some tasks and include them in a playlist.
+    
+    ...
+    - name: my tasks
+      include: my_tasks.yaml
+    - name: my tasks
+      import: my_tasks.yaml
 
+Import vs Include. Include will be injected only when it reaches the line of include. 
+Import will be injected before starting to parse playbook file.   
+
+### Pass a variable to include / import
+
+    ...
+    include: my_tasks.yaml foo="bar"
+    ...
