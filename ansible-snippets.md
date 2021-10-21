@@ -450,7 +450,26 @@ Import will be injected before starting to parse playbook file.
 If you want a task will run on a specific server add `delegate_to` to the task.
 For example we can create a list of all servers on the local machine
 
+## List all servers in 
     - name: Print hostnames
       shell: echo {{ inventory_hostname }} >> /tmp/servers_list.txt
       delegate_to: myserver1
-    
+      
+## Reboot servers
+```
+- name: Reboot server
+    shell: sleep 3 && reboot now
+    async: 1
+    poll: 0
+- name: Wait till my server will come up conline
+  wait_for:
+    host: "{{ inventory_hostname }}"
+    state: started
+    delay: 5
+    timeout: 40
+  delegate_to: 127.0.0.1
+```
+
+
+## Miscellaneous
+
