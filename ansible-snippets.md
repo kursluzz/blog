@@ -470,6 +470,7 @@ For example we can create a list of all servers on the local machine
   delegate_to: 127.0.0.1
 ```
 ### run_once
+when you want to run something only once, from one machine
 ```
 - name: Update database
   shell: echo update database
