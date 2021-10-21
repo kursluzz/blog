@@ -469,7 +469,16 @@ For example we can create a list of all servers on the local machine
     timeout: 40
   delegate_to: 127.0.0.1
 ```
+### run_once
+```
+- name: Update database
+  shell: echo update database
+  run_once: true
+  # optional add
+  delegate_to: myserver1
+```
+
+## Error Handling
 
 
-## Miscellaneous
 
