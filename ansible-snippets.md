@@ -480,6 +480,28 @@ when you want to run something only once, from one machine
 ```
 
 ## Error Handling
+### ignore_errors - Catch error
+    - name: install tree
+      apt: name=treeee state: latest
+      ignore_errors: true
 
+### failed_when - Raise error
+    - name: Raise error
+      shell: echo hello world!!!
+      register: result
+      failed_when: "'world' in results.stdout"
+      # or check return code 
+      # failed_when: results.rc == 1
+      
+### any_errors_fatal - Stop on all servers on any error
+If in a step any server got an exception will stop execution on all servers.
+    
+    ...
+    hosts: all
+    any_errors_fatal: yes
+    become: yes
+          
+## Vault
+Vault lets you save secrets like passwords etc.
 
 
